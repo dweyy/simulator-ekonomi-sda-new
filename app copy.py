@@ -65,7 +65,21 @@ def load_data():
     df["MC_per_ton"]  = df["mc"]  / (df["Q"] * 1e6)
     return df 
 df = load_data()
-
+# ─────────────────────────────
+# LOGO UNISBA
+# ─────────────────────────────
+logo = Image.open("Logo Unisba.png")  # nama file harus sama dengan repo
+st.sidebar.image(logo, width=80)
+# ─────────────────────────────
+# SIDEBAR – INFORMASI TIM
+# ─────────────────────────────
+st.sidebar.markdown("### 🌿 Ekonomi SDA & Lingkungan")
+st.sidebar.markdown("**Nama Anggota:**")
+st.sidebar.markdown("- Dwirani Salfatihah")
+st.sidebar.markdown("- Nazwa Aprilia Putri")
+st.sidebar.markdown("- Annisa Tri Lestari")
+st.sidebar.markdown("**Bimbingan:** Yuhka Sundaya")
+st.sidebar.markdown("---")  # garis pemisah
 # ─────────────────────────────────────────────
 # SIDEBAR – PARAMETER SIMULASI
 # ─────────────────────────────────────────────
