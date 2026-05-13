@@ -458,6 +458,87 @@ Pasar oligopoli berada di antara persaingan sempurna dan monopoli.
 st.divider()
 
 st.markdown(
+    # ─────────────────────────────────────────────
+# ANALISIS STRUKTUR PASAR
+# ─────────────────────────────────────────────
+
+st.divider()
+
+st.markdown(
+    '<p class="section-title">🏭 Analisis Struktur Pasar Batu Bara</p>',
+    unsafe_allow_html=True
+)
+
+col1, col2, col3 = st.columns(3)
+
+# =========================
+# PASAR PERSAINGAN
+# =========================
+with col1:
+
+    st.success("### 🟢 Pasar Persaingan")
+
+    st.markdown(f"""
+    **Karakteristik:**
+    - Banyak perusahaan tambang
+    - Tidak ada penguasa harga
+    - Harga mengikuti mekanisme pasar
+    - Keuntungan cenderung normal
+
+    **Hasil Simulasi:**
+    - Harga pasar: **Rp {last_proj["Harga Persaingan (Rp/Ton)"]:,.0f}**
+    - Harga paling rendah
+    - Produksi lebih efisien
+
+    **Interpretasi:**
+    Pada struktur ini perusahaan batu bara bertindak sebagai price taker sehingga harga mendekati biaya marginal.
+    """)
+
+# =========================
+# MONOPOLI
+# =========================
+with col2:
+
+    st.error("### 🔴 Pasar Monopoli")
+
+    st.markdown(f"""
+    **Karakteristik:**
+    - Sedikit/satu perusahaan dominan
+    - Memiliki kekuatan menentukan harga
+    - Output dikendalikan perusahaan
+    - Profit maksimum
+
+    **Hasil Simulasi:**
+    - Harga pasar: **Rp {last_proj["Harga Monopoli (Rp/Ton)"]:,.0f}**
+    - Harga paling tinggi
+    - Margin keuntungan besar
+
+    **Interpretasi:**
+    Struktur monopoli menyebabkan harga batu bara meningkat karena perusahaan memiliki market power.
+    """)
+
+# =========================
+# OLIGOPOLI
+# =========================
+with col3:
+
+    st.warning("### 🟠 Pasar Oligopoli")
+
+    st.markdown(f"""
+    **Karakteristik:**
+    - Beberapa perusahaan besar
+    - Saling memengaruhi harga
+    - Kompetisi tidak sempurna
+    - Ada strategi antar perusahaan
+
+    **Hasil Simulasi:**
+    - Harga pasar: **Rp {last_proj["Harga Oligopoli (Rp/Ton)"]:,.0f}**
+    - Harga berada di tengah
+    - Kompetisi lebih terbatas
+
+    **Interpretasi:**
+    Struktur oligopoli menghasilkan harga di antara pasar persaingan dan monopoli karena adanya interdependensi perusahaan.
+    """)
     '<p class="section-title">⛏️ Proyeksi Cadangan Batu Bara</p>',
     unsafe_allow_html=True
 )
