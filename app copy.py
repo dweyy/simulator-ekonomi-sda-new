@@ -529,40 +529,27 @@ with col1:
     """)
 
 # =========================
-# MONOPOLI
-# =========================
-with col2:
-
-    st.error("### 🔴 Pasar Monopoli")
-
-    st.markdown(f"""
-    **Karakteristik:**
-    - Sedikit/satu perusahaan dominan
-    - Memiliki kekuatan menentukan harga
-    - Output dikendalikan perusahaan
-    - Profit maksimum
-
-    **Interpretasi:**
-    Struktur monopoli menyebabkan harga batu bara meningkat karena perusahaan memiliki market power.
-    """)
-
-# =========================
 # OLIGOPOLI
 # =========================
-with col3:
+with col2:
 
     st.warning("### 🟠 Pasar Oligopoli")
 
     st.markdown(f"""
-    **Karakteristik:**
-    - Beberapa perusahaan besar
-    - Saling memengaruhi harga
-    - Kompetisi tidak sempurna
-    - Ada strategi antar perusahaan
-
     **Interpretasi:**
     Struktur oligopoli menghasilkan harga di antara pasar persaingan dan monopoli karena adanya interdependensi perusahaan.
    """)
+# =========================
+# MONOPOLI
+# =========================
+with col3:
+
+    st.error("### 🔴 Pasar Monopoli")
+
+    st.markdown(f"""
+    **Interpretasi:**
+    Struktur monopoli menyebabkan harga batu bara meningkat karena perusahaan memiliki market power.
+    """)
 
 st.markdown(
     '<p class="section-title">⛏️ Proyeksi Cadangan Batu Bara</p>',
