@@ -152,38 +152,6 @@ st.markdown("""
 ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
 """)
 st.divider()
-# ─────────────────────────────────────────────
-# PARAMETER DASAR ANALISIS
-# ─────────────────────────────────────────────
-
-st.markdown("## 📍 Parameter Dasar Analisis")
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.metric(
-        "Harga Pasar (P0)",
-        f"Rp {harga_batubara:,.0f}"
-    )
-
-with col2:
-    st.metric(
-        "Biaya Marginal (MC0)",
-        f"Rp {base_mc:,.0f}"
-    )
-
-with col3:
-    muc_awal = harga_batubara - base_mc
-
-    st.metric(
-        "MUC Awal (λ0)",
-        f"Rp {muc_awal:,.0f}"
-    )
-
-with col4:
-    st.metric(
-        "Suku Bunga (r)",
-        f"{interest_rate}%"
     )
 with st.expander("📘 Petunjuk Penggunaan"):
     st.markdown("""
@@ -276,7 +244,39 @@ base_q = last["Q"]
 base_bpp = last["BPP_per_ton"]
 base_mc = last["MC_per_ton"]
 base_cad = last["Cadangan"]
+# ─────────────────────────────────────────────
+# PARAMETER DASAR ANALISIS
+# ─────────────────────────────────────────────
 
+st.markdown("## 📍 Parameter Dasar Analisis")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric(
+        "Harga Pasar (P0)",
+        f"Rp {harga_batubara:,.0f}"
+    )
+
+with col2:
+    st.metric(
+        "Biaya Marginal (MC0)",
+        f"Rp {base_mc:,.0f}"
+    )
+
+with col3:
+    muc_awal = harga_batubara - base_mc
+
+    st.metric(
+        "MUC Awal (λ0)",
+        f"Rp {muc_awal:,.0f}"
+    )
+
+with col4:
+    st.metric(
+        "Suku Bunga (r)",
+        f"{interest_rate}%"
+    )
 # Sidebar slider untuk tahun proyeksi (baru setelah base_year ada)
 tahun_proyeksi = st.sidebar.slider("Tahun Proyeksi ke Depan", 1, 10, 5)
 
