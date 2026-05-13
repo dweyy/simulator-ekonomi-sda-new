@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import io
-from PIL import Imagest.markdown
+from PIL import Image
 # ─────────────────────────────────────────────
 # PAGE CONFIG & STYLE
 # ─────────────────────────────────────────────
