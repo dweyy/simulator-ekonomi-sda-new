@@ -70,13 +70,12 @@ try:
     logo = Image.open("Logo Unisba.png")
 
     st.image(logo, width=120)
-
-    st.markdown(
+st.markdown(
         '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
         unsafe_allow_html=True
     )
 
-    except:
+except:
     st.warning("Logo tidak ditemukan")
 # ─────────────────────────────
 # SIDEBAR – INFORMASI TIM
