@@ -87,6 +87,8 @@ try:
         ## Analisis Ekonomi Sumber Daya Batu Bara:
         ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
         """)
+except:
+    st.warning("Logo tidak ditemukan")
 # ─────────────────────────────
 # SIDEBAR – INFORMASI TIM
 # ─────────────────────────────
