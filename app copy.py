@@ -65,14 +65,23 @@ def load_data():
     df["MC_per_ton"]  = df["mc"]  / (df["Q"] * 1e6)
     return df 
 df = load_data()
-# ─────────────────────────────
 # LOGO UNISBA
-# ─────────────────────────────
 try:
     logo = Image.open("Logo Unisba.png")
-    st.sidebar.image(logo, width=80)
+
+    col_logo, col_title = st.columns([1, 6])
+
+    with col_logo:
+        st.image(logo, width=100)
+
+    with col_title:
+        st.markdown(
+            '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
+            unsafe_allow_html=True
+        )
+
 except:
-    st.sidebar.warning("Logo tidak ditemukan")
+    st.warning("Logo tidak ditemukan")
 # ─────────────────────────────
 # SIDEBAR – INFORMASI TIM
 # ─────────────────────────────
@@ -147,7 +156,6 @@ st.sidebar.caption(
 # ─────────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────────
-st.markdown('<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>', unsafe_allow_html=True)
 st.markdown("""
 ## Analisis Ekonomi Sumber Daya Batu Bara:
 ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
