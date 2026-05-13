@@ -514,6 +514,52 @@ ax_market.yaxis.set_major_formatter(
 fig_market.tight_layout()
 
 st.pyplot(fig_market)
+fig_curve, ax_curve = plt.subplots(figsize=(10,5))
+
+ax_curve.plot(
+    proj_df["Tahun"],
+    proj_df["Harga Persaingan (Rp/Ton)"],
+    marker="o",
+    linewidth=2,
+    label="Persaingan"
+)
+
+ax_curve.plot(
+    proj_df["Tahun"],
+    proj_df["Harga Oligopoli (Rp/Ton)"],
+    marker="s",
+    linewidth=2,
+    label="Oligopoli"
+)
+
+ax_curve.plot(
+    proj_df["Tahun"],
+    proj_df["Harga Monopoli (Rp/Ton)"],
+    marker="^",
+    linewidth=2,
+    label="Monopoli"
+)
+
+ax_curve.set_title(
+    "Kurva Simulasi Struktur Pasar Batu Bara",
+    fontsize=13,
+    fontweight="bold"
+)
+
+ax_curve.set_xlabel("Tahun")
+ax_curve.set_ylabel("Harga (Rp/Ton)")
+
+ax_curve.grid(alpha=0.3)
+
+ax_curve.yaxis.set_major_formatter(
+    mticker.FuncFormatter(lambda x, _: f"Rp {x:,.0f}")
+)
+
+ax_curve.legend()
+
+fig_curve.tight_layout()
+
+st.pyplot(fig_curve)
 col1, col2, col3 = st.columns(3)
 
 # =========================
