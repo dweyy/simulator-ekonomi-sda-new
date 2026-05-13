@@ -524,12 +524,6 @@ with col1:
     st.success("### 🟢 Pasar Persaingan")
 
     st.markdown(f"""
-    **Karakteristik:**
-    - Banyak perusahaan tambang
-    - Tidak ada penguasa harga
-    - Harga mengikuti mekanisme pasar
-    - Keuntungan cenderung normal
-
     **Interpretasi:**
     Pada struktur ini perusahaan batu bara bertindak sebagai price taker sehingga harga mendekati biaya marginal.
     """)
