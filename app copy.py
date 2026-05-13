@@ -473,7 +473,25 @@ ax_res.set_ylabel("Cadangan (Bt)")
 ax_res.grid(alpha=0.3)
 st.pyplot(fig_res)
 st.markdown("### 📦 Simulasi Deplesi Stok Cadangan")
+st.markdown("### 🪨 Simulasi Resource vs Reserve")
 
+resource_total = base_cad * 1.5
+
+reserve_df = pd.DataFrame({
+    "Tahun": proj_df["Tahun"],
+    "Resource Total (Bt)": resource_total,
+    "Reserve Ekonomis (Bt)": proj_df["Cadangan (Bt)"]
+})
+
+st.dataframe(reserve_df, use_container_width=True)
+
+st.info("""
+Resource menggambarkan total sumber daya batu bara yang tersedia,
+sedangkan reserve adalah bagian yang layak dieksploitasi secara ekonomis.
+
+Perubahan harga batu bara dan biaya produksi dapat menyebabkan
+pergeseran resource menjadi reserve.
+""")
 stok_df = pd.DataFrame({
     "Tahun": proj_df["Tahun"],
     "Sisa Stok (Ton)": (
@@ -528,6 +546,20 @@ st.info("""
 - Hotelling menunjukkan kenaikan harga batu bara karena kelangkaan dan opportunity cost.
 - Harga ini meningkat setiap tahun sesuai tingkat bunga (`interest_rate`) yang dipilih.
 - Berguna untuk memahami efek green paradox: eksploitasi cadangan bisa dipercepat saat harga Hotelling tinggi.
+""")
+st.warning("""
+Dalam praktik nyata, jalur harga batu bara tidak selalu mengikuti
+Aturan Hotelling secara sempurna.
+
+Hal ini disebabkan oleh:
+- perubahan teknologi ekstraksi,
+- kebijakan pemerintah,
+- energi substitusi seperti EBT,
+- fluktuasi permintaan global,
+- serta ketidakpastian geopolitik.
+
+Karena itu, model Hotelling digunakan sebagai pendekatan teoritis,
+bukan prediksi absolut.
 """)
 # Sub-bab Green Paradox
 st.divider()
@@ -660,7 +692,30 @@ Cadangan batu bara turun menjadi
 {last_proj["Cadangan (Bt)"]:.4f} Bt 
 pada akhir periode proyeksi.
 """)
+# ─────────────────────────────────────────────
+# REKOMENDASI KEBIJAKAN
+# ─────────────────────────────────────────────
 
+st.markdown("## 🏛️ Rekomendasi Kebijakan")
+
+st.success("""
+Beberapa strategi kebijakan yang dapat dilakukan:
+
+1. Penerapan pajak karbon secara bertahap
+   agar tidak memicu race to extract.
+
+2. Investasi teknologi efisiensi tambang
+   untuk menekan biaya marginal.
+
+3. Diversifikasi energi menuju energi terbarukan
+   agar ketergantungan terhadap batu bara menurun.
+
+4. Penguatan regulasi cadangan strategis
+   untuk menjaga keberlanjutan intertemporal.
+
+5. Pengembangan insentif transisi energi
+   bagi industri dan investor.
+""")
 # ─────────────────────────────────────────────
 # FOOTER
 # ─────────────────────────────────────────────
