@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import io
+from PIL import Image
 
 # ─────────────────────────────────────────────
 # PAGE CONFIG & STYLE
@@ -463,30 +464,50 @@ st.download_button(
 # ─────────────────────────────────────────────
 # PENJELASAN METODOLOGI
 # ─────────────────────────────────────────────
+# ─────────────────────────────────────────────
+# PENJELASAN METODOLOGI
+# ─────────────────────────────────────────────
 with st.expander("ℹ️ Metodologi & Penjelasan Model"):
     st.markdown("""
-st.divider()
-st.markdown("## 📝 Kesimpulan Simulasi")
-st.info(f"""
-Pada skenario {skenario}, harga batu bara diproyeksikan meningkat hingga 
-Rp {last_proj["Harga Monopoli (Rp/Ton)"]:,.0f} pada mekanisme monopoli.
+**Sumber Data:** Data historis produksi batu bara Indonesia 2014–2024 
+(BPP & MC dihitung per ton dari data agregat).
 
-Cadangan batu bara turun menjadi {last_proj["Cadangan (Bt)"]:.4f} Bt 
-pada akhir periode proyeksi.
-""")
-**Sumber Data:** Data historis produksi batu bara Indonesia 2014–2024 (BPP & MC dihitung per ton dari data agregat).
+### Tiga Mekanisme Pasar
 
-**Tiga Mekanisme Pasar:**
 | Mekanisme | Formula Harga Dasar | Karakteristik |
 |---|---|---|
-| **Persaingan** | ≈ MC/ton | Efisiensi maksimal, keuntungan normal |
-| **Monopoli** | BPP × (1 + margin%) | Satu pemain dominan, profit maksimum |
-| **Oligopoli** | Monopoli × (1 − diskon%) | Kinked demand: pemain besar saling mengikuti |
+| Persaingan | ≈ MC/ton | Efisiensi maksimal |
+| Monopoli | BPP × (1 + margin%) | Profit maksimum |
+| Oligopoli | Monopoli × (1 − diskon%) | Perusahaan saling mengikuti |
 
-**Faktor Penyesuaian:**
-- **Kelangkaan Cadangan:** MC naik seiring turunnya cadangan (asumsi -1%/tahun).
-- **Pajak/Royalti:** Ditambahkan ke harga akhir semua mekanisme.
-- **Pertumbuhan Permintaan:** Mempengaruhi volume Q proyeksi (tidak langsung mengubah harga dalam model ini).
+### Faktor Penyesuaian
+- Kelangkaan cadangan
+- Pajak & royalti
+- Pertumbuhan permintaan
+- Tingkat bunga Hotelling
+- Green paradox
 
-> ⚠️ Model ini disederhanakan untuk keperluan edukasi. Harga aktual dipengaruhi banyak faktor eksternal lain (kurs, kebijakan pemerintah, harga energi global, dll.)
+> Model ini bersifat edukatif dan disederhanakan.
 """)
+
+# ─────────────────────────────────────────────
+# KESIMPULAN
+# ─────────────────────────────────────────────
+st.divider()
+
+st.markdown("## 📝 Kesimpulan Simulasi")
+
+st.info(f"""
+Pada skenario {skenario}, harga batu bara diproyeksikan meningkat hingga 
+Rp {last_proj["Harga Monopoli (Rp/Ton)"]:,.0f}.
+
+Cadangan batu bara turun menjadi 
+{last_proj["Cadangan (Bt)"]:.4f} Bt 
+pada akhir periode proyeksi.
+""")
+
+# ─────────────────────────────────────────────
+# FOOTER
+# ─────────────────────────────────────────────
+st.markdown("---")
+st.caption("Developed for Educational Purposes | Ekonomi SDA")
