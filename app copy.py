@@ -153,6 +153,39 @@ st.markdown("""
 ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
 """)
 st.divider()
+# ─────────────────────────────────────────────
+# PARAMETER DASAR ANALISIS
+# ─────────────────────────────────────────────
+
+st.markdown("## 📍 Parameter Dasar Analisis")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric(
+        "Harga Pasar (P0)",
+        f"Rp {harga_batubara:,.0f}"
+    )
+
+with col2:
+    st.metric(
+        "Biaya Marginal (MC0)",
+        f"Rp {base_mc:,.0f}"
+    )
+
+with col3:
+    muc_awal = harga_batubara - base_mc
+
+    st.metric(
+        "MUC Awal (λ0)",
+        f"Rp {muc_awal:,.0f}"
+    )
+
+with col4:
+    st.metric(
+        "Suku Bunga (r)",
+        f"{interest_rate}%"
+    )
 with st.expander("📘 Petunjuk Penggunaan"):
     st.markdown("""
     ### Cara Menggunakan Dashboard
@@ -345,8 +378,10 @@ def simulate_green_paradox(years, base_q, base_bpp, interest_rate, green_rate):
         rows.append({"Tahun": yr, "Produksi (Juta Ton)": round(q_future,2),
                      "Harga GP (Rp/Ton)": round(p_gp,0)})
     return pd.DataFrame(rows)
-
 hotelling_df = simulate_hotelling(proj_years, base_bpp, interest_rate)
+hotelling_df["MUC (Rp)"] = (
+    hotelling_df["Harga Hotelling (Rp/Ton)"] - base_mc
+)
 gp_df = simulate_green_paradox(proj_years, base_q, base_bpp, interest_rate, green_paradox_rate)
 # ─────────────────────────────────────────────
 # 3. VISUALISASI
@@ -443,7 +478,12 @@ fig_hot.tight_layout()
 st.pyplot(fig_hot)
 st.markdown("### 📋 Tabel Proyeksi Hotelling")
 st.dataframe(
-    hotelling_df.set_index("Tahun").style.format({
+    hotelling_df[[
+        "Tahun",
+        "MUC (Rp)",
+        "Harga Hotelling (Rp/Ton)"
+    ]].set_index("Tahun").style.format({
+        "MUC (Rp)": "{:,.0f}",
         "Harga Hotelling (Rp/Ton)": "{:,.0f}"
     }),
     use_container_width=True
