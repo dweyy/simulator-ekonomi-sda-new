@@ -253,42 +253,69 @@ proj_years = list(range(base_year + 1, base_year + tahun_proyeksi + 1))
 # ─────────────────────────────────────────────
 # 2. LOGIKA SIMULASI
 # ─────────────────────────────────────────────
-def simulate(years, base_bpp, base_mc, base_q, base_cad,
-             demand_growth_pct, tax_pct, mono_margin_pct,
-             oligo_discount_pct, interest_rate, harga_batubara):
+def simulate(
+    years,
+    base_bpp,
+    base_mc,
+    base_q,
+    base_cad,
+    demand_growth_pct,
+    tax_pct,
+    mono_margin_pct,
+    oligo_discount_pct,
+    interest_rate,
+    harga_batubara
+):
+
     rows = []
+
     bpp = base_bpp
-    mc  = base_mc
-    q   = base_q
+    mc = base_mc
+    q = base_q
     cad = base_cad
+
     for i, yr in enumerate(years):
+
         cad *= 0.99
+
         scarcity_factor = 1 + (0.01 / max(cad, 0.001))
+
         mc *= 1.02 * scarcity_factor
         bpp *= 1.025
+
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
-        # Pengaruh harga batu bara terhadap struktur pasar
+
         # Pengaruh harga batu bara terhadap struktur pasar
         p_competition = (mc * 1.1) + (harga_batubara * 0.10)
 
-p_monopoly = (
-    bpp * (1 + mono_margin_pct / 100)
-) + (harga_batubara * 0.20)
+        p_monopoly = (
+            bpp * (1 + mono_margin_pct / 100)
+        ) + (harga_batubara * 0.20)
 
-p_oligopoly = (
-    p_monopoly * (1 - oligo_discount_pct / 100)
-) + (harga_batubara * 0.15)
+        p_oligopoly = (
+            p_monopoly * (1 - oligo_discount_pct / 100)
+        ) + (harga_batubara * 0.15)
+
+        tax = tax_pct / 100
+
         rows.append({
             "Tahun": yr,
             "Q_Demand (Juta Ton)": round(q_demand, 2),
             "MC/Ton (Rp)": mc,
             "BPP/Ton (Rp)": bpp,
-            "Cadangan (Bt)": round(cad,4),
-            "Harga Persaingan (Rp/Ton)": p_competition * (1+tax),
-            "Harga Monopoli (Rp/Ton)": p_monopoly * (1+tax),
-            "Harga Oligopoli (Rp/Ton)": p_oligopoly * (1+tax),
-            "Harga Hotelling (Rp/Ton)": bpp * ((1 + interest_rate/100) ** (i+1))
+            "Cadangan (Bt)": round(cad, 4),
+
+            "Harga Persaingan (Rp/Ton)": p_competition * (1 + tax),
+
+            "Harga Monopoli (Rp/Ton)": p_monopoly * (1 + tax),
+
+            "Harga Oligopoli (Rp/Ton)": p_oligopoly * (1 + tax),
+
+            "Harga Hotelling (Rp/Ton)": (
+                bpp * ((1 + interest_rate / 100) ** (i + 1))
+            )
         })
+
     return pd.DataFrame(rows)
 
 proj_df = simulate(
