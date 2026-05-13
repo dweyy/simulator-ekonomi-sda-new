@@ -461,13 +461,59 @@ st.divider()
 # ANALISIS STRUKTUR PASAR
 # ─────────────────────────────────────────────
 
-st.divider()
-
 st.markdown(
     '<p class="section-title">🏭 Analisis Struktur Pasar Batu Bara</p>',
     unsafe_allow_html=True
 )
+# ─────────────────────────────────────────────
+# DIAGRAM STRUKTUR PASAR
+# ─────────────────────────────────────────────
 
+fig_market, ax_market = plt.subplots(figsize=(10,5))
+
+struktur = ["Persaingan", "Oligopoli", "Monopoli"]
+harga_struktur = [
+    last_proj["Harga Persaingan (Rp/Ton)"],
+    last_proj["Harga Oligopoli (Rp/Ton)"],
+    last_proj["Harga Monopoli (Rp/Ton)"]
+]
+
+warna = ["#4caf50", "#fb8c00", "#e53935"]
+
+bars = ax_market.bar(
+    struktur,
+    harga_struktur,
+    color=warna,
+    width=0.6
+)
+
+# Label harga di atas batang
+for bar, val in zip(bars, harga_struktur):
+    ax_market.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height() * 1.01,
+        f"Rp {val:,.0f}",
+        ha='center',
+        fontsize=10,
+        fontweight='bold'
+    )
+
+ax_market.set_title(
+    "Perbandingan Harga Berdasarkan Struktur Pasar",
+    fontsize=13,
+    fontweight="bold"
+)
+
+ax_market.set_ylabel("Harga Batu Bara (Rp/Ton)")
+ax_market.grid(axis="y", alpha=0.3)
+
+ax_market.yaxis.set_major_formatter(
+    mticker.FuncFormatter(lambda x, _: f"Rp {x:,.0f}")
+)
+
+fig_market.tight_layout()
+
+st.pyplot(fig_market)
 col1, col2, col3 = st.columns(3)
 
 # =========================
