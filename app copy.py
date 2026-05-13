@@ -28,8 +28,9 @@ st.markdown("""
         padding: 1rem 1.2rem; border-left: 5px solid #0f3460;
     }
     .section-title {
-        font-size: 1.25rem; font-weight: 700;
-        color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
         margin-top: 1.5rem; margin-bottom: 0.5rem;
         letter-spacing: 0.5px;
         text-shadow: 0 1px 8px #0f3460, 0 1px 0 #222;
@@ -152,7 +153,6 @@ st.markdown("""
 ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
 """)
 st.divider()
-    )
 with st.expander("📘 Petunjuk Penggunaan"):
     st.markdown("""
     ### Cara Menggunakan Dashboard
@@ -248,8 +248,10 @@ base_cad = last["Cadangan"]
 # PARAMETER DASAR ANALISIS
 # ─────────────────────────────────────────────
 
-st.markdown("## 📍 Parameter Dasar Analisis")
-
+st.markdown(
+    '<p class="section-title">📍 Parameter Dasar Analisis</p>',
+    unsafe_allow_html=True
+)
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
