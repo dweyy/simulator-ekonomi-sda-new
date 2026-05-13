@@ -530,11 +530,6 @@ with col1:
     - Harga mengikuti mekanisme pasar
     - Keuntungan cenderung normal
 
-    **Hasil Simulasi:**
-    - Harga pasar: **Rp {last_proj["Harga Persaingan (Rp/Ton)"]:,.0f}**
-    - Harga paling rendah
-    - Produksi lebih efisien
-
     **Interpretasi:**
     Pada struktur ini perusahaan batu bara bertindak sebagai price taker sehingga harga mendekati biaya marginal.
     """)
@@ -553,11 +548,6 @@ with col2:
     - Output dikendalikan perusahaan
     - Profit maksimum
 
-    **Hasil Simulasi:**
-    - Harga pasar: **Rp {last_proj["Harga Monopoli (Rp/Ton)"]:,.0f}**
-    - Harga paling tinggi
-    - Margin keuntungan besar
-
     **Interpretasi:**
     Struktur monopoli menyebabkan harga batu bara meningkat karena perusahaan memiliki market power.
     """)
@@ -575,11 +565,6 @@ with col3:
     - Saling memengaruhi harga
     - Kompetisi tidak sempurna
     - Ada strategi antar perusahaan
-
-    **Hasil Simulasi:**
-    - Harga pasar: **Rp {last_proj["Harga Oligopoli (Rp/Ton)"]:,.0f}**
-    - Harga berada di tengah
-    - Kompetisi lebih terbatas
 
     **Interpretasi:**
     Struktur oligopoli menghasilkan harga di antara pasar persaingan dan monopoli karena adanya interdependensi perusahaan.
