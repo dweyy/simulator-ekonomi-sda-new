@@ -69,8 +69,11 @@ df = load_data()
 # ─────────────────────────────
 # LOGO UNISBA
 # ─────────────────────────────
-logo = Image.open("Logo Unisba.png")  # nama file harus sama dengan repo
-st.sidebar.image(logo, width=80)
+try:
+    logo = Image.open("Logo Unisba.png")
+    st.sidebar.image(logo, width=80)
+except:
+    st.sidebar.warning("Logo tidak ditemukan")
 # ─────────────────────────────
 # SIDEBAR – INFORMASI TIM
 # ─────────────────────────────
@@ -158,7 +161,7 @@ with col4:
 harga_rata2 = df["P"].mean()
 revenue = harga_rata2 * hari_operasional * (share_investor / 100)
 cashflow_bulanan = (revenue - (revenue * biaya_operasional / 100)) / 12
-investasi = investasi = revenue * 2
+investasi = revenue * 2
 break_even = investasi / (revenue - (revenue * biaya_operasional / 100)) * 12 if (revenue - (revenue * biaya_operasional / 100)) > 0 else 0
 roi = ((revenue - (revenue * biaya_operasional / 100)) / investasi) * 100 if investasi > 0 else 0
 
