@@ -458,7 +458,7 @@ Pasar oligopoli berada di antara persaingan sempurna dan monopoli.
 st.divider()
 
 st.markdown(
-    # ─────────────────────────────────────────────
+# ─────────────────────────────────────────────
 # ANALISIS STRUKTUR PASAR
 # ─────────────────────────────────────────────
 
