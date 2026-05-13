@@ -76,17 +76,17 @@ try:
 
     with col_title:
 
-    st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown(
+        st.markdown(
         '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
         unsafe_allow_html=True
-    )
+        )
 
-    st.markdown("""
-    ## Analisis Ekonomi Sumber Daya Batu Bara:
-    ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
-    """)
+        st.markdown("""
+        ## Analisis Ekonomi Sumber Daya Batu Bara:
+        ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
+        """)
 # ─────────────────────────────
 # SIDEBAR – INFORMASI TIM
 # ─────────────────────────────
