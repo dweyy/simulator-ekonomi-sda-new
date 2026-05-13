@@ -12,7 +12,6 @@ st.set_page_config(
     page_icon="⛏️",
     layout="wide",
 )
-
 st.markdown("""
 <style>
     .main-header {
@@ -440,6 +439,15 @@ ax2.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"Rp {x:,.0f}")
 ax2.grid(axis="y", alpha=0.3)
 fig2.tight_layout()
 st.pyplot(fig2)
+st.info("""
+Pasar persaingan sempurna menghasilkan harga paling efisien
+karena harga mendekati biaya marginal.
+
+Pasar monopoli menghasilkan harga lebih tinggi
+karena adanya kekuatan pasar.
+
+Pasar oligopoli berada di antara persaingan sempurna dan monopoli.
+""")
 st.divider()
 
 st.markdown(
@@ -462,6 +470,24 @@ ax_res.set_xlabel("Tahun")
 ax_res.set_ylabel("Cadangan (Bt)")
 ax_res.grid(alpha=0.3)
 st.pyplot(fig_res)
+st.markdown("### 📦 Simulasi Deplesi Stok Cadangan")
+
+stok_df = pd.DataFrame({
+    "Tahun": proj_df["Tahun"],
+    "Sisa Stok (Ton)": (
+        proj_df["Cadangan (Bt)"] * 1_000_000_000
+    ).astype(int)
+})
+
+st.dataframe(
+    stok_df,
+    use_container_width=True
+)
+
+st.info("""
+Tabel menunjukkan simulasi penurunan stok cadangan batu bara
+akibat aktivitas eksploitasi dan produksi tahunan.
+""")
 st.markdown('<p class="section-title">📈 Proyeksi Harga Hotelling</p>', unsafe_allow_html=True)
 st.markdown("Harga Hotelling menunjukkan kenaikan harga batu bara karena kelangkaan dan opportunity cost.")
 fig_hot, ax_hot = plt.subplots(figsize=(12, 5))
@@ -488,6 +514,13 @@ st.dataframe(
     }),
     use_container_width=True
 )
+st.info("""
+Kaidah Hotelling menjelaskan bahwa harga sumber daya tidak terbarukan
+akan meningkat mengikuti tingkat bunga karena kelangkaan sumber daya.
+
+Nilai MUC (Marginal User Cost) menggambarkan rente kelangkaan
+yang semakin besar ketika cadangan semakin menipis.
+""")
 st.markdown("### 💡 Narasi Hotelling Price")
 st.info("""
 - Hotelling menunjukkan kenaikan harga batu bara karena kelangkaan dan opportunity cost.
