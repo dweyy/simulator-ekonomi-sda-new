@@ -71,11 +71,12 @@ try:
 
     st.image(logo, width=120)
 
-st.markdown(
-    '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
-    unsafe_allow_html=True
-)
-except:
+    st.markdown(
+        '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
+        unsafe_allow_html=True
+    )
+
+    except:
     st.warning("Logo tidak ditemukan")
 # ─────────────────────────────
 # SIDEBAR – INFORMASI TIM
