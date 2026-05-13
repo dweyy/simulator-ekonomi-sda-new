@@ -69,7 +69,14 @@ df = load_data()
 try:
     logo = Image.open("Logo Unisba.png")
 
+col_logo, col_title = st.columns([1,5])
+
+with col_logo:
     st.image(logo, width=120)
+
+with col_title:
+    st.markdown("<br>", unsafe_allow_html=True)
+
     st.markdown(
         '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
         unsafe_allow_html=True
