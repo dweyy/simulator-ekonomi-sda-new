@@ -137,7 +137,7 @@ harga_batubara = st.sidebar.slider(
     "Harga Batu Bara Awal (Rp/Ton)",
     500000,
     5000000,
-    1800000,
+    3000000,
     step=50000
 )
 
@@ -314,22 +314,22 @@ def simulate(
 
         scarcity_factor = 1 + (0.01 / max(cad, 0.001))
 
-        mc *= 1.02 * scarcity_factor
-        bpp *= 1.025
+        mc *= 1.06 * scarcity_factor
+        bpp *= 1.05
 
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
 
         # Pengaruh harga batu bara terhadap struktur pasar
-        p_competition = (mc * 1.1) + (harga_batubara * 0.10)
+        p_competition = (mc * 1.3) + (harga_batubara * 0.70)
 
         p_monopoly = (
-            bpp * (1 + mono_margin_pct / 100)
-        ) + (harga_batubara * 0.20)
-
+            p_monopoly = (
+    bpp * (1 + mono_margin_pct / 100)
+) + (harga_batubara * 1.10)
         p_oligopoly = (
-            p_monopoly * (1 - oligo_discount_pct / 100)
-        ) + (harga_batubara * 0.15)
-
+            p_oligopoly = (
+    p_monopoly * (1 - oligo_discount_pct / 100)
+) + (harga_batubara * 0.85)
         tax = tax_pct / 100
 
         rows.append({
