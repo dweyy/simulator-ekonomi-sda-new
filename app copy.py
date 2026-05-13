@@ -269,10 +269,15 @@ def simulate(years, base_bpp, base_mc, base_q, base_cad,
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
         # Pengaruh harga batu bara terhadap struktur pasar
         # Pengaruh harga batu bara terhadap struktur pasar
-        p_competition = mc * 1.1
-        p_monopoly = bpp * (1 + mono_margin_pct / 100)
-        p_oligopoly = p_monopoly * (1 - oligo_discount_pct / 100)
-        tax = tax_pct / 100
+        p_competition = (mc * 1.1) + (harga_batubara * 0.10)
+
+p_monopoly = (
+    bpp * (1 + mono_margin_pct / 100)
+) + (harga_batubara * 0.20)
+
+p_oligopoly = (
+    p_monopoly * (1 - oligo_discount_pct / 100)
+) + (harga_batubara * 0.15)
         rows.append({
             "Tahun": yr,
             "Q_Demand (Juta Ton)": round(q_demand, 2),
@@ -286,9 +291,19 @@ def simulate(years, base_bpp, base_mc, base_q, base_cad,
         })
     return pd.DataFrame(rows)
 
-proj_df = simulate(proj_years, base_bpp, base_mc, base_q, base_cad,
-                   demand_growth, tax_rate, monopoly_margin, oligopoly_discount,
-                   interest_rate)
+proj_df = simulate(
+    proj_years,
+    base_bpp,
+    base_mc,
+    base_q,
+    base_cad,
+    demand_growth,
+    tax_rate,
+    monopoly_margin,
+    oligopoly_discount,
+    interest_rate,
+    harga_batubara
+)
 def simulate_hotelling(years, base_bpp, interest_rate):
     rows = []
     for i, yr in enumerate(years):
