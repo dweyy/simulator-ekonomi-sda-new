@@ -268,13 +268,9 @@ def simulate(years, base_bpp, base_mc, base_q, base_cad,
         bpp *= 1.025
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
         # Pengaruh harga batu bara terhadap struktur pasar
-        p_competition = (mc * 1.1) + (harga_batubara * 0.10)
-        p_monopoly = (
-        bpp * (1 + mono_margin_pct / 100)
-        ) + (harga_batubara * 0.20)
-        p_oligopoly = (
-        p_monopoly * (1 - oligo_discount_pct / 100)
-        ) + (harga_batubara * 0.15)
+        p_competition = mc * 1.1
+        p_monopoly = bpp * (1 + mono_margin_pct / 100)
+        p_oligopoly = p_monopoly * (1 - oligo_discount_pct / 100)
         tax = tax_pct / 100
         rows.append({
             "Tahun": yr,
