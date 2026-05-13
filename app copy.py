@@ -457,7 +457,6 @@ Pasar oligopoli berada di antara persaingan sempurna dan monopoli.
 """)
 st.divider()
 
-st.markdown(
 # ─────────────────────────────────────────────
 # ANALISIS STRUKTUR PASAR
 # ─────────────────────────────────────────────
@@ -538,7 +537,9 @@ with col3:
 
     **Interpretasi:**
     Struktur oligopoli menghasilkan harga di antara pasar persaingan dan monopoli karena adanya interdependensi perusahaan.
-    """)
+   """)
+
+st.markdown(
     '<p class="section-title">⛏️ Proyeksi Cadangan Batu Bara</p>',
     unsafe_allow_html=True
 )
