@@ -78,11 +78,6 @@ try:
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        st.markdown(
-        '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
-        unsafe_allow_html=True
-        )
-
         st.markdown("""
         ## Analisis Ekonomi Sumber Daya Batu Bara:
         ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
