@@ -75,10 +75,18 @@ try:
         st.image(logo, width=120)
 
     with col_title:
-        st.markdown("<br>", unsafe_allow_html=True)
 
-except:
-    st.warning("Logo tidak ditemukan")
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    st.markdown(
+        '<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown("""
+    ## Analisis Ekonomi Sumber Daya Batu Bara:
+    ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
+    """)
 # ─────────────────────────────
 # SIDEBAR – INFORMASI TIM
 # ─────────────────────────────
@@ -153,10 +161,7 @@ st.sidebar.caption(
 # ─────────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────────
-st.markdown("""
-## Analisis Ekonomi Sumber Daya Batu Bara:
-### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
-""")
+
 st.divider()
 with st.expander("📘 Petunjuk Penggunaan"):
     st.markdown("""
