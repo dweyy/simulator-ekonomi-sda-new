@@ -130,7 +130,20 @@ st.sidebar.markdown("### 🌱 Parameter Green Paradox")
 green_paradox_rate = st.sidebar.slider(
     "Kenaikan Harga Tahunan (%)", 0.0, 20.0, 5.0, step=0.5
 )
+# ───────────── Harga Batu Bara ─────────────
+st.sidebar.markdown("### 💰 Harga Batu Bara")
 
+harga_batubara = st.sidebar.slider(
+    "Harga Batu Bara Awal (Rp/Ton)",
+    500000,
+    5000000,
+    1800000,
+    step=50000
+)
+
+st.sidebar.caption(
+    "Harga batu bara memengaruhi pasar persaingan, monopoli, dan oligopoli."
+)
 # ─────────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────────
@@ -140,7 +153,25 @@ st.markdown("""
 ### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
 """)
 st.divider()
+with st.expander("📘 Petunjuk Penggunaan"):
+    st.markdown("""
+    ### Cara Menggunakan Dashboard
 
+    1. Pilih skenario simulasi pada sidebar kiri.
+    2. Atur parameter simulasi:
+       - tingkat bunga
+       - green paradox
+       - share investor
+       - harga batu bara
+    3. Amati perubahan:
+       - harga pasar persaingan
+       - harga monopoli
+       - harga oligopoli
+       - cadangan batu bara
+    4. Gunakan grafik dan tabel untuk analisis ekonomi sumber daya.
+
+    Dashboard ini bersifat edukatif untuk memahami dinamika ekonomi sumber daya batu bara.
+    """)
 # ─────────────────────────────────────────────
 # 1. DASHBOARD DATA HISTORIS
 # ─────────────────────────────────────────────
