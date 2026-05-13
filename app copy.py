@@ -3,8 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import io
-from PIL import Image
-
+from PIL import Imagest.markdown
 # ─────────────────────────────────────────────
 # PAGE CONFIG & STYLE
 # ─────────────────────────────────────────────
@@ -136,7 +135,10 @@ green_paradox_rate = st.sidebar.slider(
 # HEADER
 # ─────────────────────────────────────────────
 st.markdown('<p class="main-header">⛏️ Simulator Ekonomi Batu Bara Indonesia</p>', unsafe_allow_html=True)
-st.markdown("**Analisis struktur pasar & proyeksi harga berbasis data historis 2014–2024**")
+st.markdown("""
+## Analisis Ekonomi Sumber Daya Batu Bara:
+### Tingkat Diskonto, Harga, Marginal Cost, dan Stok
+""")
 st.divider()
 
 # ─────────────────────────────────────────────
