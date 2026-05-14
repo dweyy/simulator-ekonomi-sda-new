@@ -736,7 +736,7 @@ pergeseran resource menjadi reserve.
 stok_df = pd.DataFrame({
     "Tahun": proj_df["Tahun"],
     "Sisa Stok (Ton)": (
-        proj_df["Cadangan Persaingan"] * 1_000_000_000
+    proj_df["Cadangan Persaingan"] * 1_000_000_000
     ).astype(int)
 })
 st.dataframe(
