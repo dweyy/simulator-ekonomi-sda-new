@@ -363,24 +363,28 @@ def simulate(
         b = 0.00005
 
         # ======================================
-        # HARGA PASAR
+        # HARGA BERDASARKAN STRUKTUR PASAR
         # ======================================
 
+        # Persaingan:
+        # produksi tinggi → harga lebih rendah
         p_competition = (
-            ((a / b) - (q_competition / b))
-            * (1 + (1 / max(cad_comp, 0.1)))
+        ((a / b) - (q_competition / b))
+        * (1 + (1 / max(cad_comp, 0.1)))
         )
 
+        # Oligopoli:
+        # produksi menengah → harga menengah
         p_oligopoly = (
-            ((a / b) - (q_oligopoly / b))
-            * (1 + oligo_discount_pct / 100)
-            * (1 + (1 / max(cad_oligo, 0.1)))
+        ((a / b) - ((q_oligopoly * 0.8) / b))
+        * (1 + (1 / max(cad_oligo, 0.1)))
         )
 
+        # Monopoli:
+        # produksi dibatasi → harga lebih tinggi
         p_monopoly = (
-            ((a / b) - (q_monopoly / b))
-            * (1 + mono_margin_pct / 100)
-            * (1 + (1 / max(cad_mono, 0.1)))
+        ((a / b) - ((q_monopoly * 0.5) / b))
+        * (1 + (1 / max(cad_mono, 0.1)))
         )
 
         tax = tax_pct / 100
