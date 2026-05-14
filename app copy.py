@@ -328,17 +328,30 @@ def simulate(
         
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
 
-        # Pengaruh harga batu bara terhadap struktur pasar
-        p_competition = (mc * 1.3) + (harga_batubara * 0.70)
+# ==============================
+# FUNGSI PERMINTAAN & HARGA
+# ==============================
 
-        p_monopoly = (
-        bpp * (1 + mono_margin_pct / 100)
-        ) + (harga_batubara * 1.10)
+# parameter demand
+a = 120
+b = 0.00005
 
-        p_oligopoly = (
-        p_monopoly * (1 - oligo_discount_pct / 100)
-        ) + (harga_batubara * 0.85)
+# produksi dipengaruhi tingkat bunga
+q_adjusted = q_demand * (1 + interest_rate / 100)
 
+# fungsi inverse demand
+base_price = (a / b) - (q_adjusted / b)
+
+# struktur pasar
+p_competition = base_price * 0.9
+
+p_monopoly = base_price * (
+    1 + mono_margin_pct / 100
+)
+
+p_oligopoly = (
+    p_competition + p_monopoly
+) / 2
         tax = tax_pct / 100
 
         rows.append({
