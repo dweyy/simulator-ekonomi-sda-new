@@ -328,30 +328,51 @@ def simulate(
         
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
 
-        # ==============================
-        # FUNGSI PERMINTAAN & HARGA
-        # ==============================
+                # =========================================
+        # PENGARUH TINGKAT DISKONTO TERHADAP EKSTRAKSI
+        # =========================================
 
-        # parameter demand
+        # pasar persaingan → ekstraksi paling tinggi
+        q_competition = q_demand * (1 + (interest_rate / 100) * 1.5)
+
+        # oligopoli → sedang
+        q_oligopoly = q_demand * (1 + (interest_rate / 100) * 1.0)
+
+        # monopoli → lebih terkendali
+        q_monopoly = q_demand * (1 + (interest_rate / 100) * 0.6)
+
+        # =========================================
+        # STOK / CADANGAN
+        # =========================================
+
+        cad_comp = cad - (q_competition / 1000)
+        cad_oligo = cad - (q_oligopoly / 1000)
+        cad_mono = cad - (q_monopoly / 1000)
+
+        # =========================================
+        # HARGA BERDASARKAN KELANGKAAN
+        # inverse demand:
+        # P = (a/b) - (Q/b)
+        # =========================================
+
         a = 120
         b = 0.00005
 
-        # produksi dipengaruhi tingkat bunga
-        q_adjusted = q_demand * (1 + interest_rate / 100)
-
-        # fungsi inverse demand
-        base_price = (a / b) - (q_adjusted / b)
-
-              # struktur pasar
-        p_competition = base_price * 0.9
-
-        p_monopoly = base_price * (
-            1 + mono_margin_pct / 100
+        p_competition = (
+            ((a / b) - (q_competition / b))
+            * (1 + (1 / max(cad_comp, 0.1)))
         )
 
         p_oligopoly = (
-            p_competition + p_monopoly
-        ) / 2
+            ((a / b) - (q_oligopoly / b))
+            * (1 + (1 / max(cad_oligo, 0.1)))
+        )
+
+        p_monopoly = (
+            ((a / b) - (q_monopoly / b))
+            * (1 + (1 / max(cad_mono, 0.1)))
+            * (1 + mono_margin_pct / 100)
+        )
 
         tax = tax_pct / 100
 
@@ -360,8 +381,12 @@ def simulate(
             "Q_Demand (Juta Ton)": round(q_demand, 2),
             "MC/Ton (Rp)": mc,
             "BPP/Ton (Rp)": bpp,
-            "Cadangan (Bt)": round(cad, 4),
-
+            "Cadangan Persaingan": round(cad_comp, 4),
+            "Cadangan Oligopoli": round(cad_oligo, 4),
+            "Cadangan Monopoli": round(cad_mono, 4),
+            "Q Persaingan": round(q_competition, 2),
+            "Q Oligopoli": round(q_oligopoly, 2),
+            "Q Monopoli": round(q_monopoly, 2),
             "Harga Persaingan (Rp/Ton)": p_competition * (1 + tax),
 
             "Harga Monopoli (Rp/Ton)": p_monopoly * (1 + tax),
