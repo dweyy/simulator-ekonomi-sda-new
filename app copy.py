@@ -328,31 +328,31 @@ def simulate(
         
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
 
-# ==============================
-# FUNGSI PERMINTAAN & HARGA
-# ==============================
+        # ==============================
+        # FUNGSI PERMINTAAN & HARGA
+        # ==============================
 
-# parameter demand
-a = 120
-b = 0.00005
+        # parameter demand
+        a = 120
+        b = 0.00005
 
-# produksi dipengaruhi tingkat bunga
-q_adjusted = q_demand * (1 + interest_rate / 100)
+        # produksi dipengaruhi tingkat bunga
+        q_adjusted = q_demand * (1 + interest_rate / 100)
 
-# fungsi inverse demand
-base_price = (a / b) - (q_adjusted / b)
+        # fungsi inverse demand
+        base_price = (a / b) - (q_adjusted / b)
 
-# struktur pasar
-p_competition = base_price * 0.9
+       # struktur pasar
+       p_competition = base_price * 0.9
 
-p_monopoly = base_price * (
-    1 + mono_margin_pct / 100
-)
+       p_monopoly = base_price * (
+       1 + mono_margin_pct / 100
+       )
 
-p_oligopoly = (
-    p_competition + p_monopoly
-) / 2
-tax = tax_pct / 100
+      p_oligopoly = (
+      p_competition + p_monopoly
+      ) / 2
+      tax = tax_pct / 100
 
         rows.append({
             "Tahun": yr,
