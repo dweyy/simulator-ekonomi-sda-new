@@ -135,7 +135,7 @@ st.sidebar.markdown("---")
 st.sidebar.caption("Simulator ini bersifat edukatif dan tidak merupakan saran investasi.")
 st.sidebar.markdown("### 📊 Parameter Hotelling")
 interest_rate = st.sidebar.slider(
-    "Tingkat Bunga Tahunan (%)", 0.0, 15.0, 5.0, step=0.5
+    "Tingkat Diskonto (%)", 0.0, 15.0, 5.0, step=0.5
 )
 st.sidebar.markdown("### 🌱 Parameter Green Paradox")
 green_paradox_rate = st.sidebar.slider(
@@ -166,7 +166,7 @@ with st.expander("📘 Petunjuk Penggunaan"):
 
     1. Pilih skenario simulasi pada sidebar kiri.
     2. Atur parameter simulasi:
-       - tingkat bunga
+       - tingkat diskonto
        - green paradox
        - share investor
        - harga batu bara
@@ -355,8 +355,37 @@ def simulate(
         # P = (a/b) - (Q/b)
         # =========================================
 
+        # ======================================
+        # STRUKTUR PASAR & EKSTRAKSI
+        # ======================================
+
+        # Persaingan → ekstraksi lebih tinggi
+        q_competition = q_demand * (1 + interest_rate / 100)
+
+        # Oligopoli → ekstraksi sedang
+        q_oligopoly = q_demand * (1 + (interest_rate * 0.7) / 100)
+
+        # Monopoli → ekstraksi lebih rendah
+        q_monopoly = q_demand * (1 + (interest_rate * 0.4) / 100)
+
+        # ======================================
+        # STOK / CADANGAN
+        # ======================================
+
+        cad_comp = cad - (q_competition / 1000)
+        cad_oligo = cad - (q_oligopoly / 1000)
+        cad_mono = cad - (q_monopoly / 1000)
+
+        # ======================================
+        # FUNGSI PERMINTAAN
+        # ======================================
+
         a = 120
         b = 0.00005
+
+        # ======================================
+        # HARGA PASAR
+        # ======================================
 
         p_competition = (
             ((a / b) - (q_competition / b))
@@ -365,19 +394,23 @@ def simulate(
 
         p_oligopoly = (
             ((a / b) - (q_oligopoly / b))
+            * (1 + oligopoly_discount_pct / 100)
             * (1 + (1 / max(cad_oligo, 0.1)))
         )
 
         p_monopoly = (
             ((a / b) - (q_monopoly / b))
-            * (1 + (1 / max(cad_mono, 0.1)))
             * (1 + mono_margin_pct / 100)
+            * (1 + (1 / max(cad_mono, 0.1)))
         )
 
         tax = tax_pct / 100
-
         rows.append({
             "Tahun": yr,
+
+            "Cadangan Persaingan": cad_comp,
+            "Cadangan Oligopoli": cad_oligo,
+            "Cadangan Monopoli": cad_mono,
             "Q_Demand (Juta Ton)": round(q_demand, 2),
             "MC/Ton (Rp)": mc,
             "BPP/Ton (Rp)": bpp,
@@ -603,6 +636,22 @@ ax_curve.legend()
 fig_curve.tight_layout()
 
 st.pyplot(fig_curve)
+st.info("""
+Logika simulasi ekonomi sumber daya:
+
+1. Kenaikan tingkat diskonto mendorong perusahaan meningkatkan ekstraksi batu bara.
+
+2. Peningkatan ekstraksi menyebabkan cadangan batu bara menurun lebih cepat.
+
+3. Penurunan cadangan meningkatkan kelangkaan sumber daya.
+
+4. Kelangkaan memengaruhi harga batu bara melalui fungsi inverse demand.
+
+5. Dampak perubahan harga berbeda pada:
+- pasar persaingan,
+- oligopoli,
+- dan monopoli.
+""")
 col1, col2, col3 = st.columns(3)
 
 # =========================
