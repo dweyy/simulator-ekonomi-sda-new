@@ -585,7 +585,7 @@ col1, col2, col3 = st.columns(3)
 # =========================
 with col1:
 
-    st.success("### 🟢 Pasar Persaingan")
+    st.success("### 🔵 Pasar Persaingan")
 
     st.markdown(f"""
     **Interpretasi:**
@@ -608,7 +608,7 @@ with col2:
 # =========================
 with col3:
 
-    st.error("### 🔴 Pasar Monopoli")
+    st.error("### 🟢 Pasar Monopoli")
 
     st.markdown(f"""
     **Interpretasi:**
