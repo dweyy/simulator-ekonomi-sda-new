@@ -585,35 +585,68 @@ col1, col2, col3 = st.columns(3)
 # =========================
 with col1:
 
-    st.success("### 🔵 Pasar Persaingan")
+    st.markdown("""
+    <div style="
+    background-color:#f5f5f5;
+    padding:20px;
+    border-radius:15px;
+    border-left:8px solid #2196f3;
+    ">
+    <h2 style="color:#2196f3;">🔵 Pasar Persaingan</h2>
 
-    st.markdown(f"""
-    **Interpretasi:**
-    Pada struktur ini perusahaan batu bara bertindak sebagai price taker sehingga harga mendekati biaya marginal.
-    """)
+    <p>
+    <b>Interpretasi:</b><br>
+    Pada struktur ini perusahaan batu bara bertindak sebagai 
+    <i>price taker</i> sehingga harga mendekati biaya marginal.
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 # =========================
 # OLIGOPOLI
 # =========================
 with col2:
 
-    st.warning("### 🟠 Pasar Oligopoli")
+    st.markdown("""
+    <div style="
+    background-color:#f5f5f5;
+    padding:20px;
+    border-radius:15px;
+    border-left:8px solid #ff9800;
+    ">
+    <h2 style="color:#ff9800;">🟠 Pasar Oligopoli</h2>
 
-    st.markdown(f"""
-    **Interpretasi:**
-    Struktur oligopoli menghasilkan harga di antara pasar persaingan dan monopoli karena adanya interdependensi perusahaan.
-   """)
+    <p>
+    <b>Interpretasi:</b><br>
+    Struktur oligopoli menghasilkan harga di antara pasar 
+    persaingan dan monopoli karena adanya interdependensi perusahaan.
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 # =========================
 # MONOPOLI
 # =========================
 with col3:
 
-    st.error("### 🟢 Pasar Monopoli")
+    st.markdown("""
+    <div style="
+    background-color:#f5f5f5;
+    padding:20px;
+    border-radius:15px;
+    border-left:8px solid #f44336;
+    ">
+    <h2 style="color:#f44336;">🔴 Pasar Monopoli</h2>
 
-    st.markdown(f"""
-    **Interpretasi:**
-    Struktur monopoli menyebabkan harga batu bara meningkat karena perusahaan memiliki market power.
-    """)
+    <p>
+    <b>Interpretasi:</b><br>
+    Pasar monopoli menghasilkan harga lebih tinggi 
+    karena perusahaan memiliki kekuatan pasar.
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown(
     '<p class="section-title">⛏️ Proyeksi Cadangan Batu Bara</p>',
