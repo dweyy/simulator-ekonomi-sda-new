@@ -677,6 +677,39 @@ st.markdown(
     '<p class="section-title">⛏️ Proyeksi Cadangan Batu Bara</p>',
     unsafe_allow_html=True
 )
+fig_res, ax_res = plt.subplots(figsize=(10,5))
+
+ax_res.plot(
+    proj_df["Tahun"],
+    proj_df["Cadangan Persaingan"],
+    marker="o",
+    linewidth=2,
+    label="Persaingan"
+)
+
+ax_res.plot(
+    proj_df["Tahun"],
+    proj_df["Cadangan Oligopoli"],
+    marker="s",
+    linewidth=2,
+    label="Oligopoli"
+)
+
+ax_res.plot(
+    proj_df["Tahun"],
+    proj_df["Cadangan Monopoli"],
+    marker="^",
+    linewidth=2,
+    label="Monopoli"
+)
+ax_res.legend()
+
+ax_res.set_title("Penurunan Cadangan Batu Bara")
+ax_res.set_xlabel("Tahun")
+ax_res.set_ylabel("Cadangan (Bt)")
+ax_res.grid(alpha=0.3)
+
+st.pyplot(fig_res)
 ax_res.set_title("Penurunan Cadangan Batu Bara")
 ax_res.set_xlabel("Tahun")
 ax_res.set_ylabel("Cadangan (Bt)")
