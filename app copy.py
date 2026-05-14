@@ -677,7 +677,6 @@ st.markdown(
     '<p class="section-title">⛏️ Proyeksi Cadangan Batu Bara</p>',
     unsafe_allow_html=True
 )
-fig_res, ax_res = plt.subplots(figsize=(10,5))
 
 ax_res.plot(
     proj_df["Tahun"],
