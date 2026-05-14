@@ -328,7 +328,7 @@ def simulate(
         
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
 
-                # =========================================
+        # =========================================
         # PENGARUH TINGKAT DISKONTO TERHADAP EKSTRAKSI
         # =========================================
 
@@ -682,12 +682,32 @@ fig_res, ax_res = plt.subplots(figsize=(10,5))
 
 ax_res.plot(
     proj_df["Tahun"],
-    proj_df["Cadangan (Bt)"],
+    proj_df["Cadangan Persaingan"],
+    marker="o",
+    linewidth=2,
+    label="Persaingan"
+)
+
+ax_res.plot(
+    proj_df["Tahun"],
+    proj_df["Cadangan Oligopoli"],
+    marker="s",
+    linewidth=2,
+    label="Oligopoli"
+)
+
+ax_res.plot(
+    proj_df["Tahun"],
+    proj_df["Cadangan Monopoli"],
+    marker="^",
+    linewidth=2,
+    label="Monopoli"
+)
+ax_res.legend()
     marker="o",
     linewidth=2,
     color="#1565c0"
 )
-
 ax_res.set_title("Penurunan Cadangan Batu Bara")
 ax_res.set_xlabel("Tahun")
 ax_res.set_ylabel("Cadangan (Bt)")
@@ -701,7 +721,7 @@ resource_total = base_cad * 1.5
 reserve_df = pd.DataFrame({
     "Tahun": proj_df["Tahun"],
     "Resource Total (Bt)": resource_total,
-    "Reserve Ekonomis (Bt)": proj_df["Cadangan (Bt)"]
+    "Reserve Ekonomis (Bt)": proj_df["Cadangan Persaingan"]
 })
 
 st.dataframe(reserve_df, use_container_width=True)
@@ -716,10 +736,9 @@ pergeseran resource menjadi reserve.
 stok_df = pd.DataFrame({
     "Tahun": proj_df["Tahun"],
     "Sisa Stok (Ton)": (
-        proj_df["Cadangan (Bt)"] * 1_000_000_000
+        proj_df["Cadangan Persaingan"] * 1_000_000_000
     ).astype(int)
 })
-
 st.dataframe(
     stok_df,
     use_container_width=True
@@ -830,7 +849,9 @@ st.dataframe(
         "Q_Demand (Juta Ton)": "{:.2f}",
         "MC/Ton (Rp)": "{:,.0f}",
         "BPP/Ton (Rp)": "{:,.0f}",
-        "Cadangan (Bt)": "{:.4f}",
+        "Cadangan Persaingan": "{:.4f}",
+        "Cadangan Oligopoli": "{:.4f}",
+        "Cadangan Monopoli": "{:.4f}",
         "Harga Persaingan (Rp/Ton)": "{:,.0f}",
         "Harga Monopoli (Rp/Ton)": "{:,.0f}",
         "Harga Oligopoli (Rp/Ton)": "{:,.0f}",
@@ -846,7 +867,7 @@ if last_proj["Harga Monopoli (Rp/Ton)"] > last_proj["Harga Persaingan (Rp/Ton)"]
     Hal ini menunjukkan adanya kekuatan pasar dalam menentukan harga.
     """)
 
-if last_proj["Cadangan (Bt)"] < 1:
+if last_proj["Cadangan Persaingan"] < 1:
     st.warning("""
     Cadangan batu bara terus menurun sehingga biaya marginal meningkat.
     Risiko kelangkaan sumber daya semakin besar.
@@ -910,7 +931,7 @@ Pada skenario {skenario}, harga batu bara diproyeksikan meningkat hingga
 Rp {last_proj["Harga Monopoli (Rp/Ton)"]:,.0f}.
 
 Cadangan batu bara turun menjadi 
-{last_proj["Cadangan (Bt)"]:.4f} Bt 
+{last_proj["Cadangan Persaingan"]:.4f} Bt 
 pada akhir periode proyeksi.
 """)
 # ─────────────────────────────────────────────
