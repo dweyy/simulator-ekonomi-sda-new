@@ -704,10 +704,14 @@ ax_res.plot(
     label="Monopoli"
 )
 ax_res.legend()
-    marker="o",
-    linewidth=2,
-    color="#1565c0"
-)
+
+ax_res.set_title("Penurunan Cadangan Batu Bara")
+ax_res.set_xlabel("Tahun")
+ax_res.set_ylabel("Cadangan (Bt)")
+ax_res.grid(alpha=0.3)
+
+st.pyplot(fig_res)
+
 ax_res.set_title("Penurunan Cadangan Batu Bara")
 ax_res.set_xlabel("Tahun")
 ax_res.set_ylabel("Cadangan (Bt)")
