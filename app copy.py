@@ -635,9 +635,9 @@ with col3:
     background-color:#f5f5f5;
     padding:20px;
     border-radius:15px;
-    border-left:8px solid #f44336;
+    border-left:8px solid #4caf50;
     ">
-    <h2 style="color:#f44336;">🔴 Pasar Monopoli</h2>
+    <h2 style="color:#4caf50;">🟢 Pasar Monopoli</h2>
 
     <p>
     <b>Interpretasi:</b><br>
