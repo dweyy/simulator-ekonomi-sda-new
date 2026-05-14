@@ -329,27 +329,6 @@ def simulate(
         q_demand = q * ((1 + demand_growth_pct / 100) ** (i + 1))
 
         # =========================================
-        # PENGARUH TINGKAT DISKONTO TERHADAP EKSTRAKSI
-        # =========================================
-
-        # pasar persaingan → ekstraksi paling tinggi
-        q_competition = q_demand * (1 + (interest_rate / 100) * 1.5)
-
-        # oligopoli → sedang
-        q_oligopoly = q_demand * (1 + (interest_rate / 100) * 1.0)
-
-        # monopoli → lebih terkendali
-        q_monopoly = q_demand * (1 + (interest_rate / 100) * 0.6)
-
-        # =========================================
-        # STOK / CADANGAN
-        # =========================================
-
-        cad_comp = cad - (q_competition / 1000)
-        cad_oligo = cad - (q_oligopoly / 1000)
-        cad_mono = cad - (q_monopoly / 1000)
-
-        # =========================================
         # HARGA BERDASARKAN KELANGKAAN
         # inverse demand:
         # P = (a/b) - (Q/b)
@@ -394,7 +373,7 @@ def simulate(
 
         p_oligopoly = (
             ((a / b) - (q_oligopoly / b))
-            * (1 + oligopoly_discount_pct / 100)
+            * (1 + oligo_discount_pct / 100)
             * (1 + (1 / max(cad_oligo, 0.1)))
         )
 
