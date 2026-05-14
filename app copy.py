@@ -352,7 +352,7 @@ p_monopoly = base_price * (
 p_oligopoly = (
     p_competition + p_monopoly
 ) / 2
-        tax = tax_pct / 100
+tax = tax_pct / 100
 
         rows.append({
             "Tahun": yr,
