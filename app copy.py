@@ -709,11 +709,6 @@ ax_res.set_ylabel("Cadangan (Bt)")
 ax_res.grid(alpha=0.3)
 
 st.pyplot(fig_res)
-ax_res.set_title("Penurunan Cadangan Batu Bara")
-ax_res.set_xlabel("Tahun")
-ax_res.set_ylabel("Cadangan (Bt)")
-ax_res.grid(alpha=0.3)
-st.pyplot(fig_res)
 st.markdown("### 📦 Simulasi Deplesi Stok Cadangan")
 st.markdown("### 🪨 Simulasi Resource vs Reserve")
 
