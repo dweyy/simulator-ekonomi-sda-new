@@ -342,17 +342,18 @@ def simulate(
         # fungsi inverse demand
         base_price = (a / b) - (q_adjusted / b)
 
-       # struktur pasar
-       p_competition = base_price * 0.9
+              # struktur pasar
+        p_competition = base_price * 0.9
 
-       p_monopoly = base_price * (
-       1 + mono_margin_pct / 100
-       )
+        p_monopoly = base_price * (
+            1 + mono_margin_pct / 100
+        )
 
-      p_oligopoly = (
-      p_competition + p_monopoly
-      ) / 2
-      tax = tax_pct / 100
+        p_oligopoly = (
+            p_competition + p_monopoly
+        ) / 2
+
+        tax = tax_pct / 100
 
         rows.append({
             "Tahun": yr,
